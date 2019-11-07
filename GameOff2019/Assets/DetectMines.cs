@@ -8,6 +8,8 @@ public class DetectMines : MonoBehaviour
     public GameObject[] Mines;
     public float Distance;
     public bool Stopper = true;
+    public Vector3 NewPosition;
+    public GameObject Tile;
     public GameObject NumberBlock1;
     public GameObject NumberBlock2;
     public GameObject NumberBlock3;
@@ -42,7 +44,7 @@ public class DetectMines : MonoBehaviour
             for (int i = 0; i < Mines.Length; i++)
             {
                 Distance = Vector3.Distance(Mines[i].transform.position, transform.position);
-                if (Distance <= 1.4142)
+                if (Distance <= 1.42)
                 {
                     MinesNearMe++;
                 }
@@ -91,6 +93,38 @@ public class DetectMines : MonoBehaviour
 
             }
         }
+        float radius = 0.4f;
+        int LayerMask = 1 << 11;
+        NewPosition = transform.position;
+        NewPosition.x += 1;
+        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        {
+            OnMouseDown();
+        }
+        NewPosition = transform.position;
+        NewPosition.x -= 1;
+        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        {
+            OnMouseDown();
+        }
+        NewPosition = transform.position;
+        NewPosition.z += 1;
+        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        {
+            OnMouseDown();
+        }
+        NewPosition = transform.position;
+        NewPosition.z -= 1;
+        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        {
+            OnMouseDown();
+        }
+    }
+
+    void OnMouseDown()
+    {
+        Instantiate(Tile, transform.position, transform.rotation);
+        Destroy(gameObject);
 
     }
     void OnTriggerEnter(Collider collider)
