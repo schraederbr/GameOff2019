@@ -9,6 +9,8 @@ public class DetectMines : MonoBehaviour
     public float Distance;
     public bool Stopper = true;
     public Vector3 NewPosition;
+    public GameObject Flag;
+    public GameObject FlagChanger;
     public GameObject Tile;
     public GameObject NumberBlock1;
     public GameObject NumberBlock2;
@@ -18,15 +20,18 @@ public class DetectMines : MonoBehaviour
     public GameObject NumberBlock6;
     public GameObject NumberBlock7;
     public GameObject NumberBlock8;
+    public bool IsFlagged = false;
+
     // Start is called before the first frame update
     void Start()
     {
-
+         
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (Stopper)
         {
             Stopper = false;
@@ -97,35 +102,66 @@ public class DetectMines : MonoBehaviour
         int LayerMask = 1 << 11;
         NewPosition = transform.position;
         NewPosition.x += 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        if (Physics.CheckSphere(NewPosition, radius, LayerMask) && !IsFlagged)
         {
-            OnMouseDown();
+            SpawnTile();
         }
         NewPosition = transform.position;
         NewPosition.x -= 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        if (Physics.CheckSphere(NewPosition, radius, LayerMask) && !IsFlagged)
         {
-            OnMouseDown();
+            SpawnTile();
         }
         NewPosition = transform.position;
         NewPosition.z += 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        if (Physics.CheckSphere(NewPosition, radius, LayerMask) && !IsFlagged)
         {
-            OnMouseDown();
+            SpawnTile();
         }
         NewPosition = transform.position;
         NewPosition.z -= 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        if (Physics.CheckSphere(NewPosition, radius, LayerMask) && !IsFlagged)
         {
-            OnMouseDown();
+            SpawnTile();
         }
     }
 
-    void OnMouseDown()
+    void SpawnTile()
     {
         Instantiate(Tile, transform.position, transform.rotation);
         Destroy(gameObject);
 
+    }
+    void OnMouseDown()
+    {
+
+        if (FlagChangerBehavior.HasFlag && IsFlagged == false)
+        {
+            Renderer MyRenderer = GetComponent<Renderer>();
+
+            //Call SetColor using the shader property name "_Color" and setting the color to red
+            MyRenderer.material.SetColor("_Color", Color.red);
+            IsFlagged = true;
+           // SpawnFlag();
+        }
+        else if(FlagChangerBehavior.HasFlag == false && IsFlagged == false)
+        {
+            SpawnTile();
+        }
+        else if (FlagChangerBehavior.HasFlag == true && IsFlagged == true)
+        {
+            Renderer MyRenderer = GetComponent<Renderer>();
+
+            //Call SetColor using the shader property name "_Color" and setting the color to red
+            MyRenderer.material.SetColor("_Color", Color.white);
+            IsFlagged = false;
+        }
+    }
+
+    void SpawnFlag()
+    {
+        Instantiate(Flag, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
     void OnTriggerEnter(Collider collider)
     {

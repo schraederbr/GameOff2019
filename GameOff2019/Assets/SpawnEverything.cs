@@ -5,20 +5,21 @@ using UnityEngine;
 
 public class SpawnEverything : MonoBehaviour
 {
-    
-    public GameObject mine;
-    public GameObject detector;
+    public GameObject FlagChanger;
+    public GameObject Mine;
+    public GameObject Detector;
     public int NumberOfMines;
     public int DistanceToEdge;
     // Start is called before the first frame update
     void Awake()
     {
+        Instantiate(FlagChanger, new Vector3(9.8f, 2.1f, 6.3f), transform.rotation);
         //1st Quadrant
         for (int i = 0; i < DistanceToEdge; i++)
         {
             for (int j = 1; j < DistanceToEdge; j++)
             {
-                Instantiate(detector, new Vector3(i, 0, j), transform.rotation);
+                Instantiate(Detector, new Vector3(i, 0, j), transform.rotation);
                 //Vector3 NewPosition = new Vector3(i, 0, j);
                 //detector.transform.position = NewPosition;
             }
@@ -28,7 +29,7 @@ public class SpawnEverything : MonoBehaviour
         {
             for (int j = 0; j < DistanceToEdge; j++)
             {
-                Instantiate(detector, new Vector3(-i, 0, j), transform.rotation);
+                Instantiate(Detector, new Vector3(-i, 0, j), transform.rotation);
                 //Vector3 NewPosition = new Vector3(-i, 0, j);
                 //detector.transform.position = NewPosition;
             }
@@ -38,7 +39,7 @@ public class SpawnEverything : MonoBehaviour
         {
             for (int j = 1; j < DistanceToEdge; j++)
             {
-                Instantiate(detector, new Vector3(-i, 0, -j), transform.rotation);
+                Instantiate(Detector, new Vector3(-i, 0, -j), transform.rotation);
                 //Vector3 NewPosition = new Vector3(-i, 0, -j);
                 //detector.transform.position = NewPosition;
             }
@@ -48,7 +49,7 @@ public class SpawnEverything : MonoBehaviour
         {
             for (int j = 0; j < DistanceToEdge; j++)
             {
-                Instantiate(detector, new Vector3(i, 0, -j), transform.rotation);
+                Instantiate(Detector, new Vector3(i, 0, -j), transform.rotation);
                 //Vector3 NewPosition = ;
                 //detector.transform.position = NewPosition;
             }
@@ -61,7 +62,7 @@ public class SpawnEverything : MonoBehaviour
         //    detector.transform.position = NewPosition;
         //}
 
-        Instantiate(detector, new Vector3(0, 0, 0), transform.rotation);
+        Instantiate(Detector, new Vector3(0, 0, 0), transform.rotation);
         //Vector3 MiddlePosition = new Vector3(0, 0, 0);
         //detector.transform.position = MiddlePosition;
 
@@ -80,7 +81,7 @@ public class SpawnEverything : MonoBehaviour
                 if (Random.Range(0,TotalSpaces) <= NumberOfMines)
                 {
                     if (MinesSpawned < NumberOfMines) {
-                        Instantiate(mine, new Vector3(-i, 0, -j), transform.rotation);
+                        Instantiate(Mine, new Vector3(-i, 0, -j), transform.rotation);
                         MinesSpawned++;
                     }
                 }
@@ -88,6 +89,7 @@ public class SpawnEverything : MonoBehaviour
         }
         Debug.Log("MinesSpawned: " + MinesSpawned);
         Debug.Log("TimesChecked" + TimesChecked);
+        
     }
     void Start()
     {

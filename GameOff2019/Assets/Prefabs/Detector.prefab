@@ -110,6 +110,10 @@ MonoBehaviour:
   Mines: []
   Distance: 0
   Stopper: 1
+  NewPosition: {x: 0, y: 0, z: 0}
+  Flag: {fileID: 841205992725715285, guid: dc0d08486414fed418e7fe108050750b, type: 3}
+  FlagChanger: {fileID: 4707799236266737827, guid: 17c6181a9500e11498d76ba703324da2,
+    type: 3}
   Tile: {fileID: 6853315568306814427, guid: c39e0ad37b27c26478836b651bdfe6ff, type: 3}
   NumberBlock1: {fileID: 2888747640935577075, guid: 50b3e86b73e9b864bb823d0f8cfaff9c,
     type: 3}
@@ -127,6 +131,7 @@ MonoBehaviour:
     type: 3}
   NumberBlock8: {fileID: 7795435887669386736, guid: 2ae7e04f2601f324d8fc36c04819baea,
     type: 3}
+  HasFlag: 0
 --- !u!54 &3969089628922554937
 Rigidbody:
   m_ObjectHideFlags: 0
