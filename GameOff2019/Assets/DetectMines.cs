@@ -63,7 +63,9 @@ public class DetectMines : MonoBehaviour
                 case 0:
                     break;
                 case 1:
-                    Instantiate(NumberBlock1, transform.position, transform.rotation);
+                    Vector3 NewPosition = transform.position;
+                    //NewPosition.y++;
+                    Instantiate(NumberBlock1, NewPosition, transform.rotation);
                     Destroy(gameObject);
                     break;
                 case 2:
@@ -173,5 +175,16 @@ public class DetectMines : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+
     }
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            OnMouseDown();
+        }
+    }
+
+
 }

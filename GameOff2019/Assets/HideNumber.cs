@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ public class HideNumber : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Debug.Log(gameObject.name);
     }
 
     void OnMouseDown()
@@ -49,6 +49,13 @@ public class HideNumber : MonoBehaviour
             if (ShowNumber == true)
             {
                 number.SetActive(true);
+                string Name = gameObject.name;
+                char[] NameCharacters = Name.ToCharArray();
+                int height =(int)char.GetNumericValue(NameCharacters[0]);
+                Debug.Log(height);
+                Vector3 NewPosition = transform.position;
+                NewPosition.y += height;
+                transform.position = NewPosition;
                 Stopper = false;
             }
         }
@@ -58,4 +65,12 @@ public class HideNumber : MonoBehaviour
             MyRenderer.material.SetColor("_Color", Color.white);
         }
     }
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            OnMouseDown();
+        }
+    }
+
 }

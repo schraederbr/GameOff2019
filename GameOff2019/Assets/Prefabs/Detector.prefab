@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3969089628922554939}
   - component: {fileID: 3969089628922554938}
   - component: {fileID: 3969089628922554937}
+  - component: {fileID: 1886814795207070546}
   m_Layer: 0
   m_Name: Detector
   m_TagString: Detector
@@ -92,7 +93,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.9, z: 0.9}
+  m_Size: {x: 0.99, y: 0.99, z: 0.99}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3969089628922554938
 MonoBehaviour:
@@ -131,7 +132,7 @@ MonoBehaviour:
     type: 3}
   NumberBlock8: {fileID: 7795435887669386736, guid: 2ae7e04f2601f324d8fc36c04819baea,
     type: 3}
-  HasFlag: 0
+  IsFlagged: 0
 --- !u!54 &3969089628922554937
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,3 +149,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1886814795207070546
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3969089628922554936}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99, y: 0.99, z: 0.99}
+  m_Center: {x: 0, y: 0, z: 0}

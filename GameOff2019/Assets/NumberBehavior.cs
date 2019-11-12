@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,35 +19,66 @@ public class NumberBehavior : MonoBehaviour
         int LayerMask = 1 << 11;
         NewPosition = transform.position;
         NewPosition.x += 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        NewPosition.y -= 10;
+        Vector3 EndPosition = NewPosition;
+        EndPosition.y += 10;
+        if (Physics.CheckCapsule(NewPosition, EndPosition, radius,LayerMask))
         {
             GetComponent<HideNumber>().ShowNumber = true;
         }
+        //if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        //{
+        //    GetComponent<HideNumber>().ShowNumber = true;
+        //}
         NewPosition = transform.position;
         NewPosition.x -= 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        NewPosition.y -= 10;
+        EndPosition = NewPosition;
+        EndPosition.y += 10;
+        if (Physics.CheckCapsule(NewPosition, EndPosition, radius, LayerMask))
         {
             GetComponent<HideNumber>().ShowNumber = true;
         }
+        //if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        //{
+        //    GetComponent<HideNumber>().ShowNumber = true;
+        //}
         NewPosition = transform.position;
         NewPosition.z += 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        NewPosition.y -= 10;
+        EndPosition = NewPosition;
+        EndPosition.y += 10;
+        if (Physics.CheckCapsule(NewPosition, EndPosition, radius, LayerMask))
         {
             GetComponent<HideNumber>().ShowNumber = true;
         }
+        //if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        //{
+        //    GetComponent<HideNumber>().ShowNumber = true;
+        //}
         NewPosition = transform.position;
         NewPosition.z -= 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        NewPosition.y -= 10;
+        EndPosition = NewPosition;
+        EndPosition.y += 10;
+        if (Physics.CheckCapsule(NewPosition, EndPosition, radius, LayerMask))
         {
             GetComponent<HideNumber>().ShowNumber = true;
         }
+        //if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        //{
+        //    GetComponent<HideNumber>().ShowNumber = true;
+        //}
 
         //Diagonals
         //Top Right
         NewPosition = transform.position;
         NewPosition.x += 1;
         NewPosition.z += 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        NewPosition.y -= 10;
+        EndPosition = NewPosition;
+        EndPosition.y += 10;
+        if (Physics.CheckCapsule(NewPosition, EndPosition, radius, LayerMask))
         {
             GetComponent<HideNumber>().ShowNumber = true;
         }
@@ -55,7 +86,10 @@ public class NumberBehavior : MonoBehaviour
         NewPosition = transform.position;
         NewPosition.x -= 1;
         NewPosition.z += 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        NewPosition.y -= 10;
+        EndPosition = NewPosition;
+        EndPosition.y += 10;
+        if (Physics.CheckCapsule(NewPosition, EndPosition, radius, LayerMask))
         {
             GetComponent<HideNumber>().ShowNumber = true;
         }
@@ -63,7 +97,10 @@ public class NumberBehavior : MonoBehaviour
         NewPosition = transform.position;
         NewPosition.z -= 1;
         NewPosition.x -= 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        NewPosition.y -= 10;
+        EndPosition = NewPosition;
+        EndPosition.y += 10;
+        if (Physics.CheckCapsule(NewPosition, EndPosition, radius, LayerMask))
         {
             GetComponent<HideNumber>().ShowNumber = true;
         }
@@ -71,7 +108,10 @@ public class NumberBehavior : MonoBehaviour
         NewPosition = transform.position;
         NewPosition.z -= 1;
         NewPosition.x += 1;
-        if (Physics.CheckSphere(NewPosition, radius, LayerMask))
+        NewPosition.y -= 10;
+        EndPosition = NewPosition;
+        EndPosition.y += 10;
+        if (Physics.CheckCapsule(NewPosition, EndPosition, radius, LayerMask))
         {
             GetComponent<HideNumber>().ShowNumber = true;
         }

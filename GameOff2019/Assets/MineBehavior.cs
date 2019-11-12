@@ -38,4 +38,12 @@ public class MineBehavior : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            OnMouseDown();
+        }
+    }
 }
