@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //using Random = UnityEngine.Random;
 
 public class SpawnEverything : MonoBehaviour
@@ -10,6 +11,8 @@ public class SpawnEverything : MonoBehaviour
     public GameObject Detector;
     public int NumberOfMines;
     public int DistanceToEdge;
+    public GameObject[] Mines;
+    public GameObject[] NumberBlocks;
     // Start is called before the first frame update
     void Awake()
     {
@@ -77,12 +80,20 @@ public class SpawnEverything : MonoBehaviour
         {
             for (int j = -DistanceToEdge + 1; j < DistanceToEdge; j++)                                                                                                                         
             {
-                TimesChecked++;
-                if (Random.Range(0,TotalSpaces) <= NumberOfMines)
+                if (j == 0)
                 {
-                    if (MinesSpawned < NumberOfMines) {
-                        Instantiate(Mine, new Vector3(-i, 0, -j), transform.rotation);
-                        MinesSpawned++;
+
+                }
+                else
+                {
+                    TimesChecked++;
+                    if (Random.Range(0, TotalSpaces) <= NumberOfMines)
+                    {
+                        if (MinesSpawned < NumberOfMines)
+                        {
+                            Instantiate(Mine, new Vector3(i, 0, j), transform.rotation);
+                            MinesSpawned++;
+                        }
                     }
                 }
             }
@@ -93,6 +104,8 @@ public class SpawnEverything : MonoBehaviour
     }
     void Start()
     {
+        Invoke("GetNumberBlocks", 2.0f);
+        InvokeRepeating("IsBoardFinished", 5.0f, 1.0f);
         
     }
 
@@ -100,5 +113,25 @@ public class SpawnEverything : MonoBehaviour
     void Update()
     {
 
+    }
+    void GetNumberBlocks()
+    {
+        NumberBlocks = GameObject.FindGameObjectsWithTag("Number");
+        Debug.Log("NumberBlocks" + NumberBlocks.Length);
+    }
+    void IsBoardFinished()
+    {
+        bool BoardFinished = true;
+        foreach(GameObject go in NumberBlocks){
+            if (go.GetComponent<HideNumber>().ShowNumber == false)
+            {
+                BoardFinished = false;
+            }
+        }
+        if (BoardFinished)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadSceneAsync(scene.name);
+        }
     }
 }

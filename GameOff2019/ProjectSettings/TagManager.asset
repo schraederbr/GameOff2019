@@ -10,6 +10,8 @@ TagManager:
   - Mine
   - Detector
   - Tile
+  - Number
+  - NumberBlock
   layers:
   - Default
   - TransparentFX
